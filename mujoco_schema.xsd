@@ -136,19 +136,10 @@
             <xs:enumeration value="global" />
         </xs:restriction>
     </xs:simpleType>
-    <!-- Corrected: compiler/angle only supports radian/degree -->
     <xs:simpleType name="compilerAngleType">
         <xs:restriction base="xs:string">
             <xs:enumeration value="degree" />
             <xs:enumeration value="radian" />
-        </xs:restriction>
-    </xs:simpleType>
-    <!-- Original angleType is not used -->
-    <xs:simpleType name="angleType">
-        <xs:restriction base="xs:string">
-            <xs:enumeration value="degree" />
-            <xs:enumeration value="radian" />
-            <xs:enumeration value="auto" />
         </xs:restriction>
     </xs:simpleType>
     <xs:simpleType name="eulerseqType">
@@ -164,7 +155,6 @@
         </xs:restriction>
     </xs:simpleType>
 
-    <!-- compiler/lengthrange attributes -->
     <xs:simpleType name="modeType">
         <xs:restriction base="xs:string">
             <xs:enumeration value="none" />
@@ -174,7 +164,6 @@
         </xs:restriction>
     </xs:simpleType>
 
-    <!-- option attributes -->
     <xs:simpleType name="integratorType">
         <xs:restriction base="xs:string">
             <xs:enumeration value="Euler" />
@@ -220,7 +209,6 @@
         </xs:restriction>
     </xs:simpleType>
 
-    <!-- Corrected: asset/texture/content_type enumeration -->
     <xs:simpleType name="assetTextureContentType">
         <xs:restriction base="xs:string">
             <xs:enumeration value="image/png" />
@@ -267,7 +255,6 @@
         </xs:restriction>
     </xs:simpleType>
 
-    <!-- Corrected: asset/hfield/content_type enumeration -->
     <xs:simpleType name="assetHfieldContentType">
         <xs:restriction base="xs:string">
             <xs:enumeration value="image/png" />
@@ -291,7 +278,6 @@
         </xs:restriction>
     </xs:simpleType>
 
-    <!-- Corrected: asset/mesh/content_type enumeration -->
     <xs:simpleType name="assetMeshContentType">
         <xs:restriction base="xs:string">
             <xs:enumeration value="model/obj" />
@@ -398,7 +384,6 @@
             <xs:enumeration value="targetbodycom" />
         </xs:restriction>
     </xs:simpleType>
-    <!-- Corrected: body/composite attribute - removed invalid types -->
     <xs:simpleType name="bodyCompositetypeType">
         <xs:restriction base="xs:string">
             <xs:enumeration value="particle" />
@@ -527,7 +512,6 @@
         <xs:attribute name="balanceinertia" type="xs:boolean" default="false" />
         <xs:attribute name="strippath" type="xs:boolean" default="false" />
         <xs:attribute name="coordinate" type="coordinateType" default="local" />
-        <!-- Corrected: compiler/angle now uses compilerAngleType -->
         <xs:attribute name="angle" type="compilerAngleType" default="degree" />
         <xs:attribute name="fitaabb" type="xs:boolean" default="false" />
         <xs:attribute name="eulerseq" type="eulerseqType" default="xyz" />
@@ -1020,7 +1004,6 @@
         <xs:attribute name="lengthrange" type="twoRealsType" default="0 0" />
         <xs:attribute name="gear" type="upToSixRealsType" default="1 0 0 0 0 0" />
         <xs:attribute name="cranklength" type="xs:double" default="0" />
-        <!-- Potential improvement -->
         <xs:attribute name="user" type="infRealsType" />
         <xs:attribute name="timeconst" type="twoRealsType" default="0.01 0.04" />
         <xs:attribute name="range" type="twoRealsType" default="0.75 1.05" />
@@ -1049,7 +1032,6 @@
     <xs:complexType name="customNumericType">
         <xs:attribute name="name" type="xs:string" use="required"/>
         <xs:attribute name="size" type="xs:int" use="optional"/>
-        <!-- Potential improvement (see doc) -->
         <xs:attribute name="data" type="infRealsType" use="optional"/>
     </xs:complexType>
 
@@ -1063,11 +1045,8 @@
     </xs:complexType>
 
     <xs:complexType name="customElementType">
-        <!-- Potential improvement (see doc) -->
         <xs:attribute name="objtype" type="customobjtypeType" use="required"/>
-        <!-- Potential improvement (see doc) -->
         <xs:attribute name="objname" type="xs:string" use="required"/>
-        <!-- Corrected: Changed to xs:double for float consistency -->
         <xs:attribute name="prm" type="xs:double" default="0"/>
     </xs:complexType>
     <!--#endregion
@@ -1077,7 +1056,6 @@
     <xs:complexType name="assetTextureType">
         <xs:attribute name="name" type="xs:string" use="optional"/>
         <xs:attribute name="type" type="assetTexturetypeType" default="cube"/>
-        <!-- Corrected: Uses assetTextureContentType -->
         <xs:attribute name="content_type" type="assetTextureContentType"/>
         <xs:attribute name="colorspace" type="colorspaceType"/>
         <xs:attribute name="file" type="xs:string" use="optional"/>
@@ -1103,7 +1081,6 @@
 
     <xs:complexType name="assetHfieldType">
         <xs:attribute name="name" type="xs:string" use="optional"/>
-        <!-- Corrected: Uses assetHfieldContentType -->
         <xs:attribute name="content_type" type="assetHfieldContentType"/>
         <xs:attribute name="file" type="xs:string" use="optional"/>
         <xs:attribute name="nrow" type="xs:int" default="0"/>
@@ -1114,17 +1091,14 @@
     <xs:complexType name="assetMeshType">
         <xs:attribute name="name" type="xs:string" use="optional"/>
         <xs:attribute name="class" type="xs:string" use="optional"/>
-        <!-- Corrected: Uses assetMeshContentType -->
         <xs:attribute name="content_type" type="assetMeshContentType"/>
         <xs:attribute name="file" type="xs:string" use="optional"/>
         <xs:attribute name="scale" type="threeRealsType" default="1 1 1"/>
         <xs:attribute name="smoothnormal" type="xs:boolean" default="false"/>
-        <!-- Begin Potential improvement (see doc) -->
         <xs:attribute name="vertex" type="infRealsType" use="optional"/>
         <xs:attribute name="normal" type="infRealsType" use="optional"/>
         <xs:attribute name="texcoord" type="infRealsType" use="optional"/>
         <xs:attribute name="face" type="infIntsType" use="optional"/>
-        <!-- End Potential improvement -->
         <xs:attribute name="refpos" type="threeRealsType" default="0 0 0"/>
         <xs:attribute name="refquat" type="fourRealsType" default="1 0 0 0"/>
         <xs:attribute name="maxhullvert" type="xs:int"/>
@@ -1137,11 +1111,9 @@
     <xs:complexType name="assetSkinType">
         <xs:attribute name="name" type="xs:string" use="optional"/>
         <xs:attribute name="file" type="xs:string" use="optional"/>
-        <!-- Begin Potential improvement (see doc) -->
         <xs:attribute name="vertex" type="infRealsType" use="optional"/>
         <xs:attribute name="texcoord" type="infRealsType" use="optional"/>
         <xs:attribute name="face" type="infIntsType" use="optional"/>
-        <!-- End Potential improvement -->
         <xs:attribute name="inflate" type="xs:double" default="0"/>
         <xs:attribute name="material" type="xs:string" use="optional"/>
         <xs:attribute name="rgba" type="fourRealsType" default="0.5 0.5 0.5 1"/>
@@ -1152,10 +1124,8 @@
         <xs:attribute name="body" type="xs:string" use="required"/>
         <xs:attribute name="bindpos" type="threeRealsType" use="required"/>
         <xs:attribute name="bindquat" type="fourRealsType" use="required"/>
-        <!-- Begin Potential improvement (see doc) -->
         <xs:attribute name="vertid" type="infIntsType" use="optional"/>
         <xs:attribute name="vertweight" type="infRealsType" use="optional"/>
-        <!-- End Potential improvement -->
     </xs:complexType>
 
     <xs:complexType name="assetMaterialType">
@@ -1190,7 +1160,6 @@
         <xs:attribute name="xyaxes" type="sixRealsType" use="optional"/>
         <xs:attribute name="zaxis" type="threeRealsType" use="optional"/>
         <xs:attribute name="gravcomp" type="xs:double"/>
-        <!-- Potential improvement -->
         <xs:attribute name="user" type="infRealsType"/>
     </xs:complexType>
 
@@ -1437,7 +1406,6 @@
         <xs:attribute name="count" type="threeIntsType"/>
         <xs:attribute name="spacing" type="threeRealsType"/>
         <xs:attribute name="scale" type="threeRealsType"/>
-        <!-- Corrected: Changed to xs:double for float consistency -->
         <xs:attribute name="radius" type="xs:double"/>
         <xs:attribute name="rigid" type="xs:boolean"/>
         <xs:attribute name="mass" type="xs:double"/>
@@ -1643,7 +1611,6 @@
         <xs:attribute name="armature" type="xs:double"/>
         <xs:attribute name="user" type="infRealsType"/>
         <xs:attribute name="springlength" type="twoRealsType"/>
-        <!-- Corrected: Removed material and rgba as per XML -->
     </xs:complexType>
 
     <xs:complexType name="tendonJointType">
@@ -1675,7 +1642,6 @@
         <xs:attribute name="tendon" type="xs:string" use="optional"/>
         <xs:attribute name="body" type="xs:string"/>
         <xs:attribute name="cranksite" type="xs:string" use="optional"/>
-        <!-- Potential improvement -->
         <xs:attribute name="slidersite" type="xs:string" use="optional"/>
         <xs:attribute name="user" type="infRealsType"/>
         <xs:attribute name="dyntype" type="dyntypeType" default="none"/>
@@ -1703,7 +1669,6 @@
         <xs:attribute name="jointinparent" type="xs:string" use="optional"/>
         <xs:attribute name="tendon" type="xs:string" use="optional"/>
         <xs:attribute name="cranksite" type="xs:string" use="optional"/>
-        <!-- Potential improvement -->
         <xs:attribute name="slidersite" type="xs:string" use="optional"/>
         <xs:attribute name="site" type="xs:string" use="optional"/>
         <xs:attribute name="refsite" type="xs:string"/>
@@ -1776,7 +1741,6 @@
         <xs:attribute name="jointinparent" type="xs:string" use="optional"/>
         <xs:attribute name="tendon" type="xs:string" use="optional"/>
         <xs:attribute name="cranksite" type="xs:string" use="optional"/>
-        <!-- Potential improvement -->
         <xs:attribute name="slidersite" type="xs:string" use="optional"/>
         <xs:attribute name="user" type="infRealsType"/>
         <xs:attribute name="timeconst" type="twoRealsType" default="0.01 0.04"/>
@@ -1938,7 +1902,6 @@
         <xs:attribute name="noise" type="xs:double" default="0"/>
         <xs:attribute name="cutoff" type="xs:double" default="0"/>
         <xs:attribute name="user" type="infRealsType"/>
-        <!-- Improve next attribute with custom type -->
         <xs:attribute name="objtype" type="customobjtypeType"/>
         <xs:attribute name="objname" type="xs:string"/>
         <xs:attribute name="datatype" type="datatypeType" use="required"/>
@@ -2011,7 +1974,6 @@
         <xs:attribute name="name" type="xs:string"/>
         <xs:attribute name="group" type="xs:string"/>
         <xs:attribute name="dim" type="xs:int" use="required"/>
-        <!-- Corrected: Changed to xs:double for float consistency -->
         <xs:attribute name="radius" type="xs:double" use="required"/>
         <xs:attribute name="material" type="xs:string"/>
         <xs:attribute name="rgba" type="fourRealsType"/>
@@ -2117,7 +2079,6 @@
                 <xs:choice minOccurs="0" maxOccurs="unbounded">
                     <xs:element name="inertial" type="bodyInertialType" />
                     <xs:element name="joint" type="bodyJointType" />
-                    <!-- Corrected: freejoint now uses bodyFreeJointType -->
                     <xs:element name="freejoint" type="bodyFreeJointType" />
                     <xs:element name="geom">
                         <xs:complexType>
