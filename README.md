@@ -21,6 +21,16 @@ Once the extension is installed, add the `xsi:noNamespaceSchemaLocation` attribu
 
 Your editor should now provide autocompletion and validation for your MJCF file.
 
+## Examples
+
+Below are some examples of the schema in action, showing autocompletion and validation features:
+
+![Example 1](assets/example1.png)
+
+![Example 2](assets/example2.png)
+
+![Example 3](assets/example3.png)
+
 ## Credits
 
 This work is based on the original schema created by [ronansgd](https://github.com/ronansgd) in the [xml-schema-mjcf](https://github.com/ronansgd/xml-schema-mjcf) repository and has been updated for the latest MuJoCo syntax. Many thanks to them for their foundational work.
